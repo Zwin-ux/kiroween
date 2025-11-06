@@ -3,7 +3,7 @@
   "outputDirectory": "haunted-debug-game/.next",
   "installCommand": "cd haunted-debug-game && npm install",
   "framework": "nextjs",
-  "regions": ["iad1", "sfo1"],
+  "regions": ["iad1"],
   "functions": {
     "haunted-debug-game/src/app/**": {
       "maxDuration": 30

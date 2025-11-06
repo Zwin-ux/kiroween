@@ -51,7 +51,7 @@ The project includes optimized `vercel.json` configuration:
 - **Build Command**: `cd haunted-debug-game && npm run build`
 - **Output Directory**: `haunted-debug-game/.next`
 - **Framework**: Next.js with App Router
-- **Regions**: US East (iad1) and US West (sfo1)
+- **Regions**: US East (iad1) - Multiple regions require Pro/Enterprise plan
 - **Security Headers**: CSP, XSS protection, frame options
 - **Caching**: Optimized for static assets and dynamic content
 
