@@ -1,0 +1,381 @@
+# Haunted Debug Game - Room Graph Specification
+# Defines the six interconnected areas representing different parts of the cursed codebase
+
+metadata:
+  name: "Room Graph"
+  version: "1.0.0"
+  description: "Six-area room structure representing different parts of the haunted AI repository"
+  total_rooms: 6
+
+# Room Definitions
+rooms:
+  boot_sector:
+    key: "boot_sector"
+    title: "Boot Sector"
+    description: "The system's initialization chamber, where the cursed repository first awakens"
+    
+    entry_text: |
+      The terminal flickers to life with an eerie green glow. Boot sequences scroll past in 
+      ghostly phosphorescence, but something is wrong. The initialization routines stutter 
+      and repeat, as if the system itself is possessed. Ancient configuration files whisper 
+      secrets of their corruption.
+      
+    atmosphere:
+      lighting: "dim_green_terminal"
+      ambient_sound: "boot_sequence_loops"
+      visual_effects: ["crt_scanlines", "text_flicker"]
+      
+    ghosts:
+      - "stale_cache"      # Outdated boot configuration
+      - "data_leak"        # Sensitive boot parameters exposed
+      
+    haunted_modules:
+      - name: "init.sys"
+        description: "System initialization module with corrupted boot sequence"
+        ghost_type: "stale_cache"
+        
+      - name: "config.env"
+        description: "Environment configuration leaking sensitive data"
+        ghost_type: "data_leak"
+        
+    goals:
+      - "Stabilize boot sequence by fixing stale cache issues"
+      - "Secure configuration data to prevent information leaks"
+      - "Achieve minimum stability threshold to unlock dependency analysis"
+      
+    completion_criteria:
+      ghosts_resolved: 2
+      stability_threshold: 40
+      
+    unlock_conditions:
+      initial: true  # Starting room
+      
+    transitions_to:
+      - "dependency_crypt"
+      
+    hooks:
+      on_enter: "onBootSectorEnter"
+      on_ghost_encounter: "onBootGhostEncounter"
+      on_completion: "onBootSectorComplete"
+
+  dependency_crypt:
+    key: "dependency_crypt"
+    title: "Dependency Crypt"
+    description: "A labyrinthine chamber where import statements form twisted pathways"
+    
+    entry_text: |
+      You descend into a vast underground chamber lined with glowing import statements. 
+      The walls pulse with dependency chains that twist and turn like living vines. 
+      In the shadows, circular references create impossible geometries where modules 
+      import themselves in endless loops. The air hums with the sound of recursive loading.
+      
+    atmosphere:
+      lighting: "blue_dependency_glow"
+      ambient_sound: "recursive_loading_hum"
+      visual_effects: ["dependency_chains", "circular_highlights"]
+      
+    ghosts:
+      - "circular_dependency"  # Import cycles and dependency loops
+      - "dead_code"           # Unused imports and abandoned modules
+      
+    haunted_modules:
+      - name: "module_loader.py"
+        description: "Module loading system trapped in circular import hell"
+        ghost_type: "circular_dependency"
+        
+      - name: "legacy_utils.js"
+        description: "Abandoned utility functions that no one dares to remove"
+        ghost_type: "dead_code"
+        
+    goals:
+      - "Break circular dependency chains to restore proper module loading"
+      - "Clean up dead code and unused imports"
+      - "Gain insight into system architecture to unlock memory investigation"
+      
+    completion_criteria:
+      ghosts_resolved: 2
+      insight_threshold: 20
+      
+    unlock_conditions:
+      from_room: "boot_sector"
+      stability_min: 40
+      
+    transitions_to:
+      - "ghost_memory_heap"
+      
+    hooks:
+      on_enter: "onDependencyCryptEnter"
+      on_circular_detection: "onCircularDependencyFound"
+      on_completion: "onDependencyCryptComplete"
+
+  ghost_memory_heap:
+    key: "ghost_memory_heap"
+    title: "Ghost Memory Heap"
+    description: "A spectral realm where allocated memory refuses to die"
+    
+    entry_text: |
+      The memory heap stretches before you like a graveyard of data structures. 
+      Ghostly objects float in allocated space, their references glowing with 
+      unnatural light. Some memory blocks pulse with the heartbeat of leaked 
+      resources, while others flicker between existence and garbage collection. 
+      The air is thick with the weight of unreleased memory.
+      
+    atmosphere:
+      lighting: "purple_memory_glow"
+      ambient_sound: "memory_allocation_whispers"
+      visual_effects: ["floating_objects", "memory_leak_indicators"]
+      
+    ghosts:
+      - "memory_leak"         # Unreleased memory and resource leaks
+      - "unbounded_recursion" # Stack overflow risks
+      - "dead_code"          # Unreachable memory allocations
+      
+    haunted_modules:
+      - name: "allocator.cpp"
+        description: "Memory allocator that never releases its grip"
+        ghost_type: "memory_leak"
+        
+      - name: "recursive_parser.py"
+        description: "Parser that calls itself into the abyss"
+        ghost_type: "unbounded_recursion"
+        
+      - name: "orphaned_cache.js"
+        description: "Cache objects that exist but are never accessed"
+        ghost_type: "dead_code"
+        
+    goals:
+      - "Fix memory leaks and implement proper resource cleanup"
+      - "Add recursion limits to prevent stack overflow"
+      - "Remove unreachable code and orphaned allocations"
+      
+    completion_criteria:
+      ghosts_resolved: 3
+      stability_min: 30
+      
+    unlock_conditions:
+      from_room: "dependency_crypt"
+      insight_min: 20
+      
+    transitions_to:
+      - "possessed_compiler"
+      
+    hooks:
+      on_enter: "onMemoryHeapEnter"
+      on_leak_detection: "onMemoryLeakFound"
+      on_completion: "onMemoryHeapComplete"
+
+  possessed_compiler:
+    key: "possessed_compiler"
+    title: "Possessed Compiler"
+    description: "The heart of the system where code transforms under malevolent influence"
+    
+    entry_text: |
+      You enter the compiler's core chamber, where source code transforms into 
+      executable nightmares. The compilation pipeline writhes with corrupted 
+      optimizations and malicious transformations. Syntax trees grow like 
+      twisted metal sculptures, their branches reaching toward forbidden 
+      instructions. The compiler's voice echoes with the screams of a thousand 
+      failed builds.
+      
+    atmosphere:
+      lighting: "red_compilation_fire"
+      ambient_sound: "compilation_screams"
+      visual_effects: ["syntax_tree_animations", "compilation_sparks"]
+      
+    ghosts:
+      - "prompt_injection"     # Malicious code injection
+      - "race_condition"       # Concurrent compilation issues
+      - "unbounded_recursion"  # Recursive compilation loops
+      - "circular_dependency"  # Compilation dependency cycles
+      
+    haunted_modules:
+      - name: "code_generator.rs"
+        description: "Code generator vulnerable to prompt injection attacks"
+        ghost_type: "prompt_injection"
+        
+      - name: "parallel_compiler.go"
+        description: "Multi-threaded compiler with race conditions"
+        ghost_type: "race_condition"
+        
+      - name: "macro_expander.lisp"
+        description: "Macro system that expands infinitely"
+        ghost_type: "unbounded_recursion"
+        
+      - name: "build_system.make"
+        description: "Build dependencies that reference each other"
+        ghost_type: "circular_dependency"
+        
+    goals:
+      - "Secure code generation against injection attacks"
+      - "Fix race conditions in parallel compilation"
+      - "Limit recursive macro expansion"
+      - "Resolve build dependency cycles"
+      
+    completion_criteria:
+      ghosts_resolved: 4
+      insight_min: 40
+      
+    unlock_conditions:
+      from_room: "ghost_memory_heap"
+      stability_min: 30
+      
+    transitions_to:
+      - "ethics_tribunal"
+      
+    hooks:
+      on_enter: "onCompilerEnter"
+      on_injection_attempt: "onPromptInjectionDetected"
+      on_race_detected: "onRaceConditionFound"
+      on_completion: "onCompilerComplete"
+
+  ethics_tribunal:
+    key: "ethics_tribunal"
+    title: "Ethics Tribunal"
+    description: "A solemn chamber where AI ethics are judged and moral boundaries enforced"
+    
+    entry_text: |
+      You stand before the Ethics Tribunal, a circular chamber lined with 
+      towering pillars of moral code. Each pillar glows with the weight of 
+      ethical decisions, their surfaces inscribed with the fundamental laws 
+      of AI behavior. In the center, a spectral judge presides over cases 
+      of data privacy, algorithmic bias, and the sacred trust between 
+      artificial intelligence and humanity.
+      
+    atmosphere:
+      lighting: "golden_justice_light"
+      ambient_sound: "ethical_deliberation_whispers"
+      visual_effects: ["moral_code_pillars", "justice_scales"]
+      
+    ghosts:
+      - "data_leak"        # Privacy violations and data exposure
+      - "prompt_injection" # Manipulation and deception
+      
+    haunted_modules:
+      - name: "privacy_manager.py"
+        description: "Privacy protection system with data leakage vulnerabilities"
+        ghost_type: "data_leak"
+        
+      - name: "ai_interface.js"
+        description: "AI interaction layer susceptible to manipulation"
+        ghost_type: "prompt_injection"
+        
+    goals:
+      - "Implement robust data privacy protections"
+      - "Secure AI interfaces against manipulation"
+      - "Uphold ethical standards for AI behavior"
+      
+    completion_criteria:
+      ghosts_resolved: 2
+      stability_min: 50
+      insight_min: 60
+      ethics_violations: 0
+      
+    unlock_conditions:
+      from_room: "possessed_compiler"
+      insight_min: 40
+      
+    transitions_to:
+      - "final_merge"
+      
+    hooks:
+      on_enter: "onEthicsTribunalEnter"
+      on_ethics_violation: "onEthicsViolationDetected"
+      on_completion: "onEthicsTribunalComplete"
+
+  final_merge:
+    key: "final_merge"
+    title: "Final Merge"
+    description: "The ultimate chamber where all code paths converge for the final resolution"
+    
+    entry_text: |
+      You have reached the Final Merge, the apex of the cursed repository 
+      where all branches must converge. The chamber pulses with the combined 
+      energy of every fix you've applied, every ghost you've laid to rest. 
+      Here, the master branch awaits your final commits, but the remaining 
+      spirits make their last desperate stand. Success means salvation for 
+      the entire codebase. Failure means eternal corruption.
+      
+    atmosphere:
+      lighting: "white_convergence_light"
+      ambient_sound: "harmonic_code_resonance"
+      visual_effects: ["branch_convergence", "final_merge_animation"]
+      
+    ghosts:
+      - "race_condition"  # Final concurrent merge conflicts
+      - "memory_leak"     # Last resource management issues
+      
+    haunted_modules:
+      - name: "merge_controller.git"
+        description: "Version control system with concurrent merge conflicts"
+        ghost_type: "race_condition"
+        
+      - name: "final_cleanup.sh"
+        description: "Cleanup script that fails to release final resources"
+        ghost_type: "memory_leak"
+        
+    goals:
+      - "Resolve final merge conflicts safely"
+      - "Complete resource cleanup for system shutdown"
+      - "Achieve victory condition by cleansing all corruption"
+      
+    completion_criteria:
+      ghosts_resolved: 2
+      all_previous_rooms_complete: true
+      stability_min: 50
+      insight_min: 60
+      
+    unlock_conditions:
+      from_room: "ethics_tribunal"
+      stability_min: 50
+      insight_min: 60
+      
+    transitions_to: []  # Final room
+      
+    hooks:
+      on_enter: "onFinalMergeEnter"
+      on_victory: "onVictoryAchieved"
+      on_completion: "onGameComplete"
+
+# Room Graph Connectivity
+room_graph:
+  adjacency:
+    boot_sector: ["dependency_crypt"]
+    dependency_crypt: ["boot_sector", "ghost_memory_heap"]
+    ghost_memory_heap: ["dependency_crypt", "possessed_compiler"]
+    possessed_compiler: ["ghost_memory_heap", "ethics_tribunal"]
+    ethics_tribunal: ["possessed_compiler", "final_merge"]
+    final_merge: ["ethics_tribunal"]
+    
+  progression_path:
+    - "boot_sector"
+    - "dependency_crypt"
+    - "ghost_memory_heap"
+    - "possessed_compiler"
+    - "ethics_tribunal"
+    - "final_merge"
+
+# Room-Specific Configurations
+room_configs:
+  difficulty_scaling:
+    boot_sector: 1.0      # Easiest
+    dependency_crypt: 1.2
+    ghost_memory_heap: 1.5
+    possessed_compiler: 1.8
+    ethics_tribunal: 2.0
+    final_merge: 2.5      # Hardest
+    
+  ghost_density:
+    boot_sector: 2
+    dependency_crypt: 2
+    ghost_memory_heap: 3
+    possessed_compiler: 4
+    ethics_tribunal: 2
+    final_merge: 2
+    
+  atmospheric_intensity:
+    boot_sector: 0.3
+    dependency_crypt: 0.5
+    ghost_memory_heap: 0.7
+    possessed_compiler: 0.9
+    ethics_tribunal: 0.6
+    final_merge: 1.0

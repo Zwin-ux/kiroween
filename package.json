@@ -1,0 +1,41 @@
+{
+  "name": "kiroween",
+  "version": "1.0.0",
+  "description": "KiroWeen: A spooky educational debugging game for Halloween",
+  "private": true,
+  "workspaces": [
+    "haunted-debug-game"
+  ],
+  "scripts": {
+    "dev": "cd haunted-debug-game && npm run dev",
+    "build": "cd haunted-debug-game && npm run build",
+    "start": "cd haunted-debug-game && npm run start",
+    "test": "cd haunted-debug-game && npm test",
+    "lint": "cd haunted-debug-game && npm run lint",
+    "install-deps": "cd haunted-debug-game && npm install",
+    "clean": "cd haunted-debug-game && rm -rf .next node_modules",
+    "deploy": "vercel --prod"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Zwin-ux/kiroween.git"
+  },
+  "keywords": [
+    "game",
+    "education",
+    "debugging",
+    "halloween",
+    "nextjs",
+    "typescript",
+    "accessibility"
+  ],
+  "author": "Zwin-ux",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  },
+  "devDependencies": {
+    "vercel": "^32.0.0"
+  }
+}

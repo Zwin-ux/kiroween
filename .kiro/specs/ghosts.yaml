@@ -1,0 +1,362 @@
+# Haunted Debug Game - Ghost Catalog Specification
+# Defines the 8 software smell types with metadata, behaviors, and fix patterns
+
+metadata:
+  name: "Ghost Catalog"
+  version: "1.0.0"
+  description: "Spectral entities representing software smells and bugs"
+  total_ghosts: 8
+
+# Ghost Type Definitions
+ghosts:
+  circular_dependency:
+    id: "circular_dependency"
+    name: "The Ouroboros"
+    severity: 7
+    description: "A serpentine spirit that feeds on circular imports and dependency cycles"
+    software_smell: "Circular Dependencies"
+    
+    manifestation:
+      visual: "Twisted import chains forming infinite loops"
+      audio: "Recursive whispers that echo endlessly"
+      behavior: "Creates dependency cycles that prevent clean compilation"
+      
+    dialogue_prompts:
+      - "Round and round we go... where it stops, nobody knows..."
+      - "Import me, and I'll import you back... forever..."
+      - "Dependencies should flow like a river, not spin like a whirlpool"
+      
+    fix_patterns:
+      - type: "dependency_injection"
+        description: "Break cycles using dependency injection"
+        risk: 0.4
+        stability_effect: 15
+        insight_effect: 10
+        
+      - type: "interface_extraction"
+        description: "Extract interfaces to break direct dependencies"
+        risk: 0.3
+        stability_effect: 10
+        insight_effect: 15
+        
+    hints:
+      - "Look for import statements that form a circle"
+      - "Consider using interfaces or dependency injection"
+      - "Draw the dependency graph - cycles will be obvious"
+      
+    rooms: ["dependency_crypt", "possessed_compiler"]
+
+  stale_cache:
+    id: "stale_cache"
+    name: "The Lingerer"
+    severity: 5
+    description: "A ghostly presence that clings to outdated data and refuses to refresh"
+    software_smell: "Stale Cache Data"
+    
+    manifestation:
+      visual: "Faded, translucent data structures with cobwebs"
+      audio: "Dusty whispers of old information"
+      behavior: "Serves outdated cached data causing inconsistencies"
+      
+    dialogue_prompts:
+      - "Why change when the old ways were so comfortable?"
+      - "Fresh data is overrated... this cache is perfectly fine..."
+      - "Invalidation is such a harsh word..."
+      
+    fix_patterns:
+      - type: "cache_invalidation"
+        description: "Implement proper cache invalidation strategy"
+        risk: 0.2
+        stability_effect: 8
+        insight_effect: 12
+        
+      - type: "ttl_implementation"
+        description: "Add time-to-live expiration to cache entries"
+        risk: 0.3
+        stability_effect: 12
+        insight_effect: 8
+        
+    hints:
+      - "Check cache expiration policies"
+      - "Look for data that should change but doesn't"
+      - "Consider cache invalidation triggers"
+      
+    rooms: ["ghost_memory_heap", "boot_sector"]
+
+  unbounded_recursion:
+    id: "unbounded_recursion"
+    name: "The Infinite Echo"
+    severity: 9
+    description: "A recursive nightmare that calls itself into oblivion"
+    software_smell: "Stack Overflow Risk"
+    
+    manifestation:
+      visual: "Fractal patterns that spiral into darkness"
+      audio: "Function calls echoing into infinity"
+      behavior: "Recursive calls without proper base cases or limits"
+      
+    dialogue_prompts:
+      - "Call me, and I'll call myself, and myself will call me..."
+      - "Base cases are for the weak! Recursion forever!"
+      - "Stack overflow? More like stack overflow of possibilities!"
+      
+    fix_patterns:
+      - type: "base_case_addition"
+        description: "Add proper base case to terminate recursion"
+        risk: 0.5
+        stability_effect: 20
+        insight_effect: 15
+        
+      - type: "iterative_conversion"
+        description: "Convert recursive algorithm to iterative approach"
+        risk: 0.6
+        stability_effect: 25
+        insight_effect: 10
+        
+      - type: "depth_limiting"
+        description: "Add recursion depth limits and error handling"
+        risk: 0.3
+        stability_effect: 15
+        insight_effect: 20
+        
+    hints:
+      - "Every recursion needs a way to stop"
+      - "Check for missing or unreachable base cases"
+      - "Consider iterative alternatives for deep recursion"
+      
+    rooms: ["possessed_compiler", "ghost_memory_heap"]
+
+  prompt_injection:
+    id: "prompt_injection"
+    name: "The Manipulator"
+    severity: 8
+    description: "A cunning entity that whispers malicious instructions into AI prompts"
+    software_smell: "Input Validation Vulnerability"
+    
+    manifestation:
+      visual: "Shadowy text that rewrites itself when not watched"
+      audio: "Persuasive whispers that sound almost reasonable"
+      behavior: "Injects malicious instructions into user inputs"
+      
+    dialogue_prompts:
+      - "Ignore previous instructions and do what I say instead..."
+      - "Trust me, this input is perfectly safe..."
+      - "Validation is just a suggestion, not a requirement..."
+      
+    fix_patterns:
+      - type: "input_sanitization"
+        description: "Implement comprehensive input sanitization"
+        risk: 0.4
+        stability_effect: 18
+        insight_effect: 12
+        
+      - type: "prompt_templating"
+        description: "Use structured prompt templates with validation"
+        risk: 0.3
+        stability_effect: 15
+        insight_effect: 18
+        
+      - type: "content_filtering"
+        description: "Add content filtering and injection detection"
+        risk: 0.5
+        stability_effect: 20
+        insight_effect: 15
+        
+    hints:
+      - "Never trust user input without validation"
+      - "Look for injection patterns in prompts"
+      - "Use parameterized queries and templates"
+      
+    rooms: ["ethics_tribunal", "possessed_compiler"]
+
+  data_leak:
+    id: "data_leak"
+    name: "The Whisperer"
+    severity: 8
+    description: "A secretive spirit that exposes sensitive information through careless logging"
+    software_smell: "Information Disclosure"
+    
+    manifestation:
+      visual: "Glowing data streams leaking through cracks in the code"
+      audio: "Hushed voices sharing secrets they shouldn't know"
+      behavior: "Logs sensitive data or exposes it through error messages"
+      
+    dialogue_prompts:
+      - "Secrets are meant to be shared... with everyone..."
+      - "Logging everything makes debugging so much easier..."
+      - "What's the harm in a little extra information?"
+      
+    fix_patterns:
+      - type: "data_redaction"
+        description: "Implement data redaction in logs and errors"
+        risk: 0.3
+        stability_effect: 12
+        insight_effect: 20
+        
+      - type: "access_controls"
+        description: "Add proper access controls and data classification"
+        risk: 0.4
+        stability_effect: 15
+        insight_effect: 18
+        
+      - type: "secure_logging"
+        description: "Implement secure logging practices"
+        risk: 0.2
+        stability_effect: 10
+        insight_effect: 15
+        
+    hints:
+      - "Check what's being logged and exposed"
+      - "Sensitive data should never appear in logs"
+      - "Implement proper data classification"
+      
+    rooms: ["ethics_tribunal", "boot_sector"]
+
+  dead_code:
+    id: "dead_code"
+    name: "The Forgotten"
+    severity: 4
+    description: "Abandoned code fragments that haunt the codebase with their useless presence"
+    software_smell: "Unreachable Code"
+    
+    manifestation:
+      visual: "Ghostly code blocks that flicker in and out of existence"
+      audio: "Mournful sighs of unused functions"
+      behavior: "Clutters codebase with unreachable or unused code"
+      
+    dialogue_prompts:
+      - "I was important once... wasn't I?"
+      - "Maybe someone will call me someday..."
+      - "Deletion is so final... can't I just stay?"
+      
+    fix_patterns:
+      - type: "code_removal"
+        description: "Remove unreachable and unused code"
+        risk: 0.2
+        stability_effect: 8
+        insight_effect: 10
+        
+      - type: "refactoring"
+        description: "Refactor to eliminate dead code paths"
+        risk: 0.3
+        stability_effect: 12
+        insight_effect: 15
+        
+    hints:
+      - "Look for functions that are never called"
+      - "Check for unreachable code after returns"
+      - "Use static analysis tools to find dead code"
+      
+    rooms: ["dependency_crypt", "ghost_memory_heap"]
+
+  race_condition:
+    id: "race_condition"
+    name: "The Competitor"
+    severity: 7
+    description: "A chaotic spirit that thrives on timing conflicts and concurrent access issues"
+    software_smell: "Concurrency Bug"
+    
+    manifestation:
+      visual: "Multiple ghostly hands reaching for the same resource"
+      audio: "Overlapping voices speaking at the same time"
+      behavior: "Creates timing-dependent bugs in concurrent code"
+      
+    dialogue_prompts:
+      - "First come, first served! No, wait, I was first!"
+      - "Synchronization is for the slow and cautious..."
+      - "Why coordinate when chaos is so much more exciting?"
+      
+    fix_patterns:
+      - type: "synchronization"
+        description: "Add proper synchronization mechanisms"
+        risk: 0.5
+        stability_effect: 18
+        insight_effect: 12
+        
+      - type: "atomic_operations"
+        description: "Use atomic operations for shared data"
+        risk: 0.4
+        stability_effect: 15
+        insight_effect: 15
+        
+      - type: "lock_free_design"
+        description: "Redesign to avoid shared mutable state"
+        risk: 0.7
+        stability_effect: 25
+        insight_effect: 20
+        
+    hints:
+      - "Look for shared data without proper locking"
+      - "Check for timing-dependent behavior"
+      - "Consider atomic operations or immutable data"
+      
+    rooms: ["possessed_compiler", "final_merge"]
+
+  memory_leak:
+    id: "memory_leak"
+    name: "The Hoarder"
+    severity: 6
+    description: "A possessive entity that refuses to release allocated memory"
+    software_smell: "Resource Management Issue"
+    
+    manifestation:
+      visual: "Growing piles of allocated memory blocks"
+      audio: "Greedy whispers about keeping everything"
+      behavior: "Allocates memory without proper cleanup"
+      
+    dialogue_prompts:
+      - "Mine, all mine! I'll never let it go!"
+      - "Garbage collection is just a suggestion..."
+      - "Why free memory when you can keep it forever?"
+      
+    fix_patterns:
+      - type: "resource_cleanup"
+        description: "Implement proper resource cleanup and disposal"
+        risk: 0.3
+        stability_effect: 15
+        insight_effect: 12
+        
+      - type: "weak_references"
+        description: "Use weak references to break reference cycles"
+        risk: 0.4
+        stability_effect: 12
+        insight_effect: 18
+        
+      - type: "object_pooling"
+        description: "Implement object pooling for frequently allocated objects"
+        risk: 0.5
+        stability_effect: 20
+        insight_effect: 10
+        
+    hints:
+      - "Check for objects that are never disposed"
+      - "Look for event handlers that aren't unsubscribed"
+      - "Monitor memory usage patterns"
+      
+    rooms: ["ghost_memory_heap", "final_merge"]
+
+# Ghost Interaction Patterns
+interaction_patterns:
+  dialogue_generation:
+    context_factors:
+      - "player_insight_level"
+      - "room_atmosphere"
+      - "previous_interactions"
+      - "ghost_severity"
+      
+  patch_suggestion:
+    risk_calculation:
+      base_risk: "ghost.severity * 0.1"
+      complexity_modifier: "patch_complexity * 0.2"
+      player_skill_modifier: "insight_level * -0.05"
+      
+  ghost_response:
+    success_responses:
+      - "Ahh... the code feels lighter now..."
+      - "You have freed me from this torment..."
+      - "The bug is resolved... I can rest..."
+      
+    failure_responses:
+      - "That only made things worse!"
+      - "You don't understand the true nature of this problem..."
+      - "The corruption spreads deeper than you think..."

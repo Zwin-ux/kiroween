@@ -1,0 +1,151 @@
+@import "tailwindcss";
+@import "../styles/consolidated-visual-system.css";
+@import "../styles/asset-performance.css";
+
+/* Tailwind CSS Theme Configuration */
+@layer base {
+  :root {
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+    --color-primary: var(--primary);
+    --color-primary-foreground: var(--primary-foreground);
+    --color-secondary: var(--secondary);
+    --color-secondary-foreground: var(--secondary-foreground);
+    --color-destructive: var(--destructive);
+    --color-destructive-foreground: var(--destructive-foreground);
+    --color-muted: var(--muted);
+    --color-muted-foreground: var(--muted-foreground);
+    --color-accent: var(--accent);
+    --color-accent-foreground: var(--accent-foreground);
+    --color-border: var(--border);
+    --color-input: var(--input);
+    --color-ring: var(--ring);
+    
+    --font-sans: var(--font-ui);
+    --font-mono: var(--font-code);
+  }
+}
+
+/* Legacy Compatibility Classes */
+.horror-ide {
+  /* Apply spectral-panel styles manually since it's not a Tailwind utility */
+  background: linear-gradient(135deg, 
+    rgba(26, 26, 26, 0.95) 0%, 
+    rgba(42, 42, 42, 0.9) 50%, 
+    rgba(26, 26, 26, 0.95) 100%);
+  border: 1px solid var(--spectral-cyan-dim);
+  border-radius: var(--radius-lg);
+  box-shadow: 
+    var(--depth-2),
+    inset 0 1px 0 rgba(0, 255, 255, 0.1),
+    0 0 20px rgba(0, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+  contain: layout style;
+  transform: translateZ(0);
+  
+  /* Apply focus-secondary styles manually */
+  color: var(--spectral-cyan-dim);
+  font-family: var(--font-code);
+  font-weight: 600;
+  z-index: 50;
+}
+
+.crt-scanlines {
+  /* Apply crt-effect styles manually */
+  position: relative;
+}
+
+.crt-scanlines::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent 0px,
+    transparent 2px,
+    rgba(0, 255, 255, 0.03) 2px,
+    rgba(0, 255, 255, 0.03) 4px
+  );
+  pointer-events: none;
+  z-index: 5;
+  animation: scanlineFlicker 0.1s linear infinite;
+}
+
+.cursor-blink {
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+/* Legacy Z-index Compatibility */
+.game-background { z-index: 0; }
+.game-entity { z-index: 10; }
+.game-ui { z-index: 20; }
+.game-content { z-index: 30; }
+.game-overlay { z-index: 40; }
+
+/* Legacy Room Background Compatibility */
+.room-background {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: scroll; /* Updated for better performance */
+}
+
+/* Asset Integration Utilities - Enhanced */
+.asset-container {
+  position: relative;
+  overflow: hidden;
+  contain: layout;
+}
+
+.asset-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.asset-interactive {
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+/* Enhanced Ghost Effects */
+.ghost-hover {
+  transition: transform var(--timing-fast) ease-in-out;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+  will-change: transform, opacity;
+}
+
+.ghost-hover:hover {
+  transform: scale(1.1);
+  box-shadow: var(--glow-spectral);
+}
+
+/* Legacy Asset Glow Effects - Mapped to Spectral System */
+.asset-glow-red { box-shadow: var(--glow-danger); }
+.asset-glow-blue { box-shadow: var(--glow-info); }
+.asset-glow-green { box-shadow: var(--glow-success); }
+.asset-glow-yellow { box-shadow: var(--glow-warning); }
+.asset-glow-orange { box-shadow: var(--glow-warning); }
+.asset-glow-purple { box-shadow: var(--glow-spectral); }
+.asset-glow-cyan { box-shadow: var(--glow-spectral); }
+.asset-glow-teal { box-shadow: var(--glow-info); }
+
+/* Legacy Asset Optimizations - Mapped to New System */
+.asset-optimized { 
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+  will-change: transform, opacity;
+}

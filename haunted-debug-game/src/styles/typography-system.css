@@ -1,0 +1,518 @@
+/**
+ * Enhanced Typography System for Haunted Debug Game
+ * Font hierarchy with Orbitron, Cascadia Code, and Inter
+ * Status-based typography with proper contrast and accessibility
+ * Addresses Requirements: 3.1, 3.2, 3.3, 3.4, 3.5
+ */
+
+/* ===== FONT IMPORTS AND DEFINITIONS ===== */
+
+/* Import Orbitron for display text */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap');
+
+/* Import Inter for UI text */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* Cascadia Code is typically system-installed or can be loaded locally */
+@font-face {
+  font-family: 'Cascadia Code';
+  src: local('Cascadia Code'), local('CascadiaCode');
+  font-display: swap;
+}
+
+/* ===== ENHANCED TYPOGRAPHY TOKENS ===== */
+:root {
+  /* Font Families */
+  --font-display: 'Orbitron', 'Cascadia Code', monospace;
+  --font-code: 'Cascadia Code', 'Source Code Pro', 'Fira Code', 'Consolas', monospace;
+  --font-ui: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  
+  /* Font Sizes - Modular Scale (1.25 ratio) */
+  --text-xs: 0.75rem;     /* 12px */
+  --text-sm: 0.875rem;    /* 14px */
+  --text-base: 1rem;      /* 16px */
+  --text-lg: 1.125rem;    /* 18px */
+  --text-xl: 1.25rem;     /* 20px */
+  --text-2xl: 1.5rem;     /* 24px */
+  --text-3xl: 1.875rem;   /* 30px */
+  --text-4xl: 2.25rem;    /* 36px */
+  --text-5xl: 3rem;       /* 48px */
+  --text-6xl: 3.75rem;    /* 60px */
+  
+  /* Font Weights */
+  --font-light: 300;
+  --font-normal: 400;
+  --font-medium: 500;
+  --font-semibold: 600;
+  --font-bold: 700;
+  --font-extrabold: 800;
+  --font-black: 900;
+  
+  /* Line Heights */
+  --leading-tight: 1.25;
+  --leading-snug: 1.375;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.625;
+  --leading-loose: 2;
+  
+  /* Letter Spacing */
+  --tracking-tighter: -0.05em;
+  --tracking-tight: -0.025em;
+  --tracking-normal: 0em;
+  --tracking-wide: 0.025em;
+  --tracking-wider: 0.05em;
+  --tracking-widest: 0.1em;
+}
+
+/* ===== TYPOGRAPHY HIERARCHY ===== */
+
+/* Display Typography - Orbitron for maximum impact */
+.text-display-1 {
+  font-family: var(--font-display);
+  font-size: var(--text-6xl);
+  font-weight: var(--font-black);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+  color: var(--spectral-cyan);
+  text-shadow: 
+    0 0 20px var(--spectral-cyan),
+    0 0 40px var(--spectral-cyan-dim);
+  margin-bottom: var(--space-xl);
+}
+
+.text-display-2 {
+  font-family: var(--font-display);
+  font-size: var(--text-5xl);
+  font-weight: var(--font-extrabold);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+  color: var(--spectral-cyan);
+  text-shadow: 
+    0 0 15px var(--spectral-cyan),
+    0 0 30px var(--spectral-cyan-dim);
+  margin-bottom: var(--space-lg);
+}
+
+.text-display-3 {
+  font-family: var(--font-display);
+  font-size: var(--text-4xl);
+  font-weight: var(--font-bold);
+  line-height: var(--leading-snug);
+  letter-spacing: var(--tracking-normal);
+  color: var(--spectral-cyan-dim);
+  text-shadow: 
+    0 0 12px var(--spectral-cyan-dim),
+    0 0 24px var(--spectral-cyan-dark);
+  margin-bottom: var(--space-lg);
+}
+
+/* Heading Typography - Mixed Orbitron and Cascadia Code */
+.text-heading-1 {
+  font-family: var(--font-display);
+  font-size: var(--text-3xl);
+  font-weight: var(--font-bold);
+  line-height: var(--leading-snug);
+  letter-spacing: var(--tracking-wide);
+  color: var(--spectral-cyan);
+  text-shadow: 0 0 10px var(--spectral-cyan);
+  margin-bottom: var(--space-lg);
+}
+
+.text-heading-2 {
+  font-family: var(--font-code);
+  font-size: var(--text-2xl);
+  font-weight: var(--font-semibold);
+  line-height: var(--leading-snug);
+  letter-spacing: var(--tracking-wide);
+  color: var(--spectral-cyan-dim);
+  text-shadow: 0 0 8px var(--spectral-cyan-dim);
+  margin-bottom: var(--space-md);
+}
+
+.text-heading-3 {
+  font-family: var(--font-code);
+  font-size: var(--text-xl);
+  font-weight: var(--font-semibold);
+  line-height: var(--leading-normal);
+  letter-spacing: var(--tracking-normal);
+  color: var(--spectral-blue);
+  text-shadow: 0 0 6px var(--spectral-blue);
+  margin-bottom: var(--space-md);
+}
+
+.text-heading-4 {
+  font-family: var(--font-ui);
+  font-size: var(--text-lg);
+  font-weight: var(--font-semibold);
+  line-height: var(--leading-normal);
+  letter-spacing: var(--tracking-normal);
+  color: var(--ghost-white);
+  margin-bottom: var(--space-sm);
+}
+
+/* Body Typography - Inter for readability */
+.text-body-large {
+  font-family: var(--font-ui);
+  font-size: var(--text-lg);
+  font-weight: var(--font-normal);
+  line-height: var(--leading-relaxed);
+  letter-spacing: var(--tracking-normal);
+  color: var(--ghost-white);
+  margin-bottom: var(--space-md);
+}
+
+.text-body {
+  font-family: var(--font-ui);
+  font-size: var(--text-base);
+  font-weight: var(--font-normal);
+  line-height: var(--leading-relaxed);
+  letter-spacing: var(--tracking-normal);
+  color: var(--ghost-white);
+  margin-bottom: var(--space-md);
+}
+
+.text-body-small {
+  font-family: var(--font-ui);
+  font-size: var(--text-sm);
+  font-weight: var(--font-normal);
+  line-height: var(--leading-normal);
+  letter-spacing: var(--tracking-normal);
+  color: rgba(240, 248, 255, 0.8);
+  margin-bottom: var(--space-sm);
+}
+
+/* Code Typography - Cascadia Code for terminal content */
+.text-code-large {
+  font-family: var(--font-code);
+  font-size: var(--text-lg);
+  font-weight: var(--font-medium);
+  line-height: var(--leading-normal);
+  letter-spacing: var(--tracking-normal);
+  color: var(--success-green);
+  text-shadow: 0 0 6px var(--success-green);
+  font-variant-ligatures: common-ligatures;
+}
+
+.text-code {
+  font-family: var(--font-code);
+  font-size: var(--text-base);
+  font-weight: var(--font-normal);
+  line-height: var(--leading-normal);
+  letter-spacing: var(--tracking-normal);
+  color: var(--success-green);
+  text-shadow: 0 0 4px var(--success-green);
+  font-variant-ligatures: common-ligatures;
+}
+
+.text-code-small {
+  font-family: var(--font-code);
+  font-size: var(--text-sm);
+  font-weight: var(--font-normal);
+  line-height: var(--leading-snug);
+  letter-spacing: var(--tracking-normal);
+  color: var(--spectral-cyan-dim);
+  font-variant-ligatures: common-ligatures;
+}
+
+/* Caption and Label Typography */
+.text-caption {
+  font-family: var(--font-code);
+  font-size: var(--text-xs);
+  font-weight: var(--font-medium);
+  line-height: var(--leading-normal);
+  letter-spacing: var(--tracking-wider);
+  color: rgba(240, 248, 255, 0.6);
+  text-transform: uppercase;
+}
+
+.text-label {
+  font-family: var(--font-ui);
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+  line-height: var(--leading-normal);
+  letter-spacing: var(--tracking-wide);
+  color: var(--spectral-cyan-dim);
+}
+
+/* ===== STATUS-BASED TYPOGRAPHY ===== */
+
+/* Critical Status - Maximum attention */
+.text-status-critical {
+  color: var(--danger-red) !important;
+  text-shadow: 
+    0 0 10px var(--danger-red),
+    0 0 20px var(--danger-red-glow) !important;
+  font-weight: var(--font-bold);
+  animation: criticalTextPulse 1s ease-in-out infinite;
+}
+
+@keyframes criticalTextPulse {
+  0%, 50% { 
+    opacity: 1; 
+    transform: scale(1);
+  }
+  51%, 100% { 
+    opacity: 0.8; 
+    transform: scale(1.02);
+  }
+}
+
+/* Warning Status - Needs attention */
+.text-status-warning {
+  color: var(--warning-orange) !important;
+  text-shadow: 
+    0 0 8px var(--warning-orange),
+    0 0 16px var(--warning-orange-glow) !important;
+  font-weight: var(--font-semibold);
+  animation: warningTextFlicker 3s ease-in-out infinite;
+}
+
+@keyframes warningTextFlicker {
+  0%, 90%, 100% { opacity: 1; }
+  95% { opacity: 0.7; }
+}
+
+/* Success Status - Positive feedback */
+.text-status-success {
+  color: var(--success-green) !important;
+  text-shadow: 
+    0 0 8px var(--success-green),
+    0 0 16px var(--success-green-glow) !important;
+  font-weight: var(--font-medium);
+}
+
+/* Info Status - Informational */
+.text-status-info {
+  color: var(--spectral-cyan) !important;
+  text-shadow: 
+    0 0 6px var(--spectral-cyan),
+    0 0 12px var(--spectral-cyan-dim) !important;
+  font-weight: var(--font-medium);
+}
+
+/* Stable Status - Normal operation */
+.text-status-stable {
+  color: var(--spectral-blue) !important;
+  text-shadow: 
+    0 0 4px var(--spectral-blue),
+    0 0 8px var(--spectral-blue-dim) !important;
+  font-weight: var(--font-normal);
+}
+
+/* Unknown Status - Uncertain state */
+.text-status-unknown {
+  color: var(--spectral-amber) !important;
+  text-shadow: 
+    0 0 6px var(--spectral-amber),
+    0 0 12px var(--spectral-amber-dim) !important;
+  font-weight: var(--font-medium);
+  animation: unknownTextShimmer 2s ease-in-out infinite alternate;
+}
+
+@keyframes unknownTextShimmer {
+  0% { opacity: 0.7; }
+  100% { opacity: 1; }
+}
+
+/* ===== ACCESSIBILITY ENHANCEMENTS ===== */
+
+/* High contrast ratios for accessibility */
+.text-high-contrast {
+  color: var(--ghost-white) !important;
+  text-shadow: 
+    1px 1px 0 var(--shadow-deep),
+    -1px -1px 0 var(--shadow-deep),
+    1px -1px 0 var(--shadow-deep),
+    -1px 1px 0 var(--shadow-deep) !important;
+  font-weight: var(--font-semibold);
+}
+
+/* Focus indicators for interactive text */
+.text-interactive:focus-visible {
+  outline: 2px solid var(--spectral-cyan);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+/* Screen reader optimizations */
+.text-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ===== RESPONSIVE TYPOGRAPHY ===== */
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .text-display-1 {
+    font-size: var(--text-4xl);
+    text-shadow: 
+      0 0 15px var(--spectral-cyan),
+      0 0 30px var(--spectral-cyan-dim);
+  }
+  
+  .text-display-2 {
+    font-size: var(--text-3xl);
+    text-shadow: 
+      0 0 12px var(--spectral-cyan),
+      0 0 24px var(--spectral-cyan-dim);
+  }
+  
+  .text-display-3 {
+    font-size: var(--text-2xl);
+  }
+  
+  .text-heading-1 {
+    font-size: var(--text-2xl);
+  }
+  
+  .text-heading-2 {
+    font-size: var(--text-xl);
+  }
+  
+  .text-body-large {
+    font-size: var(--text-base);
+  }
+}
+
+/* Tablet optimizations */
+@media (max-width: 1024px) {
+  .text-display-1 {
+    font-size: var(--text-5xl);
+  }
+  
+  .text-display-2 {
+    font-size: var(--text-4xl);
+  }
+}
+
+/* ===== REDUCED MOTION SUPPORT ===== */
+
+@media (prefers-reduced-motion: reduce) {
+  .text-status-critical,
+  .text-status-warning,
+  .text-status-unknown {
+    animation: none !important;
+  }
+  
+  .text-status-critical {
+    opacity: 1;
+    transform: scale(1);
+  }
+  
+  .text-status-warning {
+    opacity: 1;
+  }
+  
+  .text-status-unknown {
+    opacity: 1;
+  }
+}
+
+/* ===== HIGH CONTRAST MODE ===== */
+
+@media (prefers-contrast: high) {
+  :root {
+    --spectral-cyan: #00ffff;
+    --spectral-blue: #0080ff;
+    --danger-red: #ff0000;
+    --warning-orange: #ff8000;
+    --success-green: #00ff00;
+    --ghost-white: #ffffff;
+  }
+  
+  .text-display-1,
+  .text-display-2,
+  .text-display-3,
+  .text-heading-1,
+  .text-heading-2,
+  .text-heading-3 {
+    text-shadow: 
+      2px 2px 0 var(--shadow-deep),
+      -2px -2px 0 var(--shadow-deep),
+      2px -2px 0 var(--shadow-deep),
+      -2px 2px 0 var(--shadow-deep) !important;
+  }
+  
+  .text-status-critical,
+  .text-status-warning,
+  .text-status-success,
+  .text-status-info,
+  .text-status-stable,
+  .text-status-unknown {
+    text-shadow: 
+      1px 1px 0 var(--shadow-deep),
+      -1px -1px 0 var(--shadow-deep),
+      1px -1px 0 var(--shadow-deep),
+      -1px 1px 0 var(--shadow-deep) !important;
+  }
+}
+
+/* ===== UTILITY CLASSES ===== */
+
+/* Font Weight Utilities */
+.font-light { font-weight: var(--font-light); }
+.font-normal { font-weight: var(--font-normal); }
+.font-medium { font-weight: var(--font-medium); }
+.font-semibold { font-weight: var(--font-semibold); }
+.font-bold { font-weight: var(--font-bold); }
+.font-extrabold { font-weight: var(--font-extrabold); }
+.font-black { font-weight: var(--font-black); }
+
+/* Text Alignment */
+.text-left { text-align: left; }
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+.text-justify { text-align: justify; }
+
+/* Text Transform */
+.uppercase { text-transform: uppercase; }
+.lowercase { text-transform: lowercase; }
+.capitalize { text-transform: capitalize; }
+.normal-case { text-transform: none; }
+
+/* Letter Spacing */
+.tracking-tighter { letter-spacing: var(--tracking-tighter); }
+.tracking-tight { letter-spacing: var(--tracking-tight); }
+.tracking-normal { letter-spacing: var(--tracking-normal); }
+.tracking-wide { letter-spacing: var(--tracking-wide); }
+.tracking-wider { letter-spacing: var(--tracking-wider); }
+.tracking-widest { letter-spacing: var(--tracking-widest); }
+
+/* Line Height */
+.leading-tight { line-height: var(--leading-tight); }
+.leading-snug { line-height: var(--leading-snug); }
+.leading-normal { line-height: var(--leading-normal); }
+.leading-relaxed { line-height: var(--leading-relaxed); }
+.leading-loose { line-height: var(--leading-loose); }
+
+/* Text Decoration */
+.underline { text-decoration: underline; }
+.line-through { text-decoration: line-through; }
+.no-underline { text-decoration: none; }
+
+/* Text Glow Utilities */
+.text-glow-spectral { 
+  text-shadow: 0 0 10px var(--spectral-cyan), 0 0 20px var(--spectral-cyan-dim); 
+}
+.text-glow-danger { 
+  text-shadow: 0 0 10px var(--danger-red), 0 0 20px var(--danger-red-glow); 
+}
+.text-glow-warning { 
+  text-shadow: 0 0 10px var(--warning-orange), 0 0 20px var(--warning-orange-glow); 
+}
+.text-glow-success { 
+  text-shadow: 0 0 10px var(--success-green), 0 0 20px var(--success-green-glow); 
+}
+
+/* Monospace Utilities */
+.font-mono { font-family: var(--font-code); }
+.font-display { font-family: var(--font-display); }
+.font-ui { font-family: var(--font-ui); }

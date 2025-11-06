@@ -1,0 +1,465 @@
+/**
+ * Asset Performance Optimization CSS
+ * Optimized CSS for asset-heavy components with performance considerations
+ */
+
+/* ===== CSS CONTAINMENT FOR ASSET-HEAVY COMPONENTS ===== */
+
+/* Asset containers with strict containment for performance */
+.asset-container {
+  contain: layout style paint;
+  isolation: isolate;
+  transform: translateZ(0); /* Force GPU layer */
+  will-change: transform, opacity;
+}
+
+/* Room atmosphere containers with layout containment */
+.room-atmosphere-container {
+  contain: layout paint;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Ghost renderer containers with paint containment */
+.ghost-renderer-container {
+  contain: paint;
+  transform: translateZ(0);
+  will-change: transform, filter, opacity;
+}
+
+/* Seasonal decoration containers with strict containment */
+.seasonal-decoration-container {
+  contain: strict;
+  transform: translateZ(0);
+}
+
+/* Terminal integration containers with layout containment */
+.terminal-integration-container {
+  contain: layout style;
+  transform: translateZ(0);
+}
+
+/* ===== BACKGROUND IMAGE CONFLICT MINIMIZATION ===== */
+
+/* Remove conflicting CSS gradients when background images are present */
+.room-base.has-background {
+  background-image: none !important; /* Override CSS gradients */
+  background-color: transparent !important;
+}
+
+/* Minimize atmospheric overlay opacity when PNG backgrounds are loaded */
+.room-base.has-background .atmospheric-overlay {
+  opacity: 0.7 !important;
+  mix-blend-mode: overlay;
+}
+
+/* Reduce CSS animation intensity when background images are present */
+.room-base.has-background .ambient-element {
+  opacity: 0.8;
+  animation-duration: calc(var(--timing-normal) * 1.2);
+}
+
+/* Optimize background image rendering */
+.room-background-optimized {
+  background-attachment: scroll; /* Better performance than fixed */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  image-rendering: optimizeQuality;
+  transform: translateZ(0);
+}
+
+/* Mobile-specific background optimizations */
+@media (max-width: 768px) {
+  .room-background-optimized {
+    background-attachment: scroll !important;
+    background-size: contain; /* Reduce memory usage on mobile */
+  }
+}
+
+/* ===== CSS-BASED LOADING STATES FOR ASSETS ===== */
+
+/* Skeleton loading animation for asset placeholders */
+.asset-skeleton {
+  background: linear-gradient(
+    90deg,
+    rgba(168, 92, 49, 0.1) 0%,
+    rgba(168, 92, 49, 0.2) 25%,
+    rgba(168, 92, 49, 0.3) 50%,
+    rgba(168, 92, 49, 0.2) 75%,
+    rgba(168, 92, 49, 0.1) 100%
+  );
+  background-size: 200% 100%;
+  animation: skeletonShimmer 2s ease-in-out infinite;
+  border-radius: var(--radius-md);
+  position: relative;
+  overflow: hidden;
+}
+
+@keyframes skeletonShimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Pulse loading animation for ghost assets */
+.asset-loading-pulse {
+  background: radial-gradient(
+    circle,
+    rgba(168, 92, 49, 0.3) 0%,
+    rgba(168, 92, 49, 0.1) 50%,
+    transparent 100%
+  );
+  animation: loadingPulse 1.5s ease-in-out infinite;
+  border-radius: 50%;
+}
+
+@keyframes loadingPulse {
+  0%, 100% { 
+    opacity: 0.6; 
+    transform: scale(1); 
+  }
+  50% { 
+    opacity: 1; 
+    transform: scale(1.05); 
+  }
+}
+
+/* Shimmer loading for room backgrounds */
+.room-loading-shimmer {
+  background: linear-gradient(
+    135deg,
+    rgba(10, 10, 10, 0.9) 0%,
+    rgba(168, 92, 49, 0.1) 25%,
+    rgba(168, 92, 49, 0.2) 50%,
+    rgba(168, 92, 49, 0.1) 75%,
+    rgba(10, 10, 10, 0.9) 100%
+  );
+  background-size: 400% 400%;
+  animation: roomShimmer 3s ease-in-out infinite;
+  position: relative;
+}
+
+@keyframes roomShimmer {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Loading dots animation */
+.asset-loading-dots::after {
+  content: '';
+  display: inline-block;
+  width: 20px;
+  text-align: left;
+  animation: loadingDots 2s steps(4, end) infinite;
+}
+
+@keyframes loadingDots {
+  0% { content: ''; }
+  25% { content: '.'; }
+  50% { content: '..'; }
+  75% { content: '...'; }
+  100% { content: ''; }
+}
+
+/* Spinner loading animation */
+.asset-loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba(168, 92, 49, 0.2);
+  border-top: 3px solid var(--metal-copper);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Progress bar loading */
+.asset-loading-progress {
+  width: 100%;
+  height: 4px;
+  background: rgba(168, 92, 49, 0.2);
+  border-radius: 2px;
+  overflow: hidden;
+  position: relative;
+}
+
+.asset-loading-progress::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--metal-copper) 50%,
+    transparent 100%
+  );
+  animation: progressSlide 2s ease-in-out infinite;
+}
+
+@keyframes progressSlide {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+/* ===== PERFORMANCE OPTIMIZATION UTILITIES ===== */
+
+/* GPU acceleration for asset-heavy elements */
+.asset-gpu-layer {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+  will-change: transform, opacity, filter;
+}
+
+/* Optimize repaints for frequently changing elements */
+.asset-repaint-optimized {
+  contain: layout style paint;
+  isolation: isolate;
+}
+
+/* Reduce layout thrashing for animated assets */
+.asset-layout-stable {
+  contain: layout;
+  transform: translateZ(0);
+}
+
+/* Memory-efficient asset rendering */
+.asset-memory-optimized {
+  image-rendering: optimizeSpeed;
+  transform: translateZ(0);
+  will-change: auto; /* Reset will-change when not animating */
+}
+
+/* Composite layer optimization */
+.asset-composite-layer {
+  transform: translateZ(0);
+  opacity: 0.99; /* Force composite layer without visual change */
+}
+
+/* ===== RESPONSIVE ASSET PERFORMANCE ===== */
+
+/* Reduce asset complexity on smaller screens */
+@media (max-width: 640px) {
+  .asset-container {
+    contain: layout; /* Reduce containment on mobile */
+  }
+  
+  .asset-skeleton {
+    animation-duration: 3s; /* Slower animation on mobile */
+  }
+  
+  .room-loading-shimmer {
+    animation-duration: 4s; /* Slower animation on mobile */
+  }
+  
+  /* Disable expensive effects on mobile */
+  .asset-gpu-layer {
+    will-change: auto;
+  }
+}
+
+/* Optimize for high-DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .asset-memory-optimized {
+    image-rendering: -webkit-optimize-contrast;
+  }
+}
+
+/* ===== REDUCED MOTION SUPPORT ===== */
+
+@media (prefers-reduced-motion: reduce) {
+  .asset-skeleton,
+  .asset-loading-pulse,
+  .room-loading-shimmer,
+  .asset-loading-spinner {
+    animation: none !important;
+  }
+  
+  .asset-skeleton {
+    background: rgba(168, 92, 49, 0.15);
+  }
+  
+  .asset-loading-pulse {
+    background: rgba(168, 92, 49, 0.2);
+    opacity: 0.8;
+  }
+  
+  .room-loading-shimmer {
+    background: rgba(10, 10, 10, 0.9);
+  }
+  
+  .asset-loading-dots::after {
+    content: '...';
+    animation: none;
+  }
+  
+  .asset-loading-progress::before {
+    animation: none;
+    left: 0;
+    width: 60%; /* Static progress indicator */
+  }
+}
+
+/* ===== HIGH CONTRAST MODE SUPPORT ===== */
+
+@media (prefers-contrast: high) {
+  .asset-skeleton {
+    background: #333;
+    border: 2px solid #fff;
+  }
+  
+  .asset-loading-pulse {
+    background: #444;
+    border: 2px solid var(--metal-copper);
+  }
+  
+  .room-loading-shimmer {
+    background: #222;
+    border: 1px solid #666;
+  }
+  
+  .asset-loading-spinner {
+    border-color: #666;
+    border-top-color: #fff;
+  }
+  
+  .asset-loading-progress {
+    background: #333;
+    border: 1px solid #666;
+  }
+}
+
+/* ===== ASSET ERROR STATES ===== */
+
+/* Error state styling with performance considerations */
+.asset-error-state {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 71, 87, 0.1) 0%,
+    rgba(255, 71, 87, 0.05) 100%
+  );
+  border: 1px dashed var(--light-error);
+  border-radius: var(--radius-md);
+  position: relative;
+  contain: layout style;
+}
+
+.asset-error-state::before {
+  content: '⚠';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2rem;
+  color: var(--light-error);
+  opacity: 0.7;
+}
+
+/* Retry button styling */
+.asset-retry-button {
+  background: linear-gradient(
+    145deg,
+    var(--metal-bronze) 0%,
+    var(--metal-copper) 100%
+  );
+  border: none;
+  border-radius: var(--radius-sm);
+  color: white;
+  padding: var(--space-xs) var(--space-sm);
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: transform var(--timing-fast);
+  contain: layout style;
+}
+
+.asset-retry-button:hover {
+  transform: translateY(-1px);
+}
+
+.asset-retry-button:active {
+  transform: translateY(0);
+}
+
+/* ===== ASSET LAYERING PERFORMANCE ===== */
+
+/* Z-index optimization for asset layers */
+.asset-layer-background { z-index: 1; }
+.asset-layer-room { z-index: 5; }
+.asset-layer-decorations { z-index: 10; }
+.asset-layer-entities { z-index: 15; }
+.asset-layer-effects { z-index: 20; }
+.asset-layer-ui { z-index: 25; }
+.asset-layer-overlay { z-index: 30; }
+
+/* Stacking context optimization */
+.asset-stacking-context {
+  position: relative;
+  z-index: 0;
+  isolation: isolate;
+}
+
+/* ===== MEMORY MANAGEMENT ===== */
+
+/* Unload heavy assets when not visible */
+.asset-offscreen {
+  content-visibility: auto;
+  contain-intrinsic-size: 300px 200px;
+}
+
+/* Lazy loading placeholder */
+.asset-lazy-placeholder {
+  background: rgba(168, 92, 49, 0.1);
+  border: 1px dashed rgba(168, 92, 49, 0.3);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(168, 92, 49, 0.7);
+  font-size: 0.875rem;
+  contain: strict;
+}
+
+/* ===== DEBUGGING UTILITIES ===== */
+
+/* Visual debugging for asset containers (development only) */
+.asset-debug-container {
+  outline: 2px dashed rgba(255, 0, 0, 0.3);
+  outline-offset: -2px;
+}
+
+.asset-debug-container::before {
+  content: attr(data-asset-type);
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: rgba(255, 0, 0, 0.8);
+  color: white;
+  padding: 2px 4px;
+  font-size: 10px;
+  z-index: 9999;
+  pointer-events: none;
+}
+
+/* Performance monitoring indicators */
+.asset-perf-indicator {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  z-index: 9999;
+  pointer-events: none;
+}
+
+.asset-perf-good { background: #22c55e; }
+.asset-perf-warning { background: #f59e0b; }
+.asset-perf-poor { background: #ef4444; }
