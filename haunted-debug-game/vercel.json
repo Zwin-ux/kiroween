@@ -5,7 +5,7 @@
   "framework": "nextjs",
   "regions": ["iad1"],
   "functions": {
-    "haunted-debug-game/src/app/**": {
+    "src/app/**": {
       "maxDuration": 30
     }
   },
