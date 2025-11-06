@@ -25,6 +25,8 @@ This guide covers deploying the KiroWeen Haunted Debug Game to various platforms
 
 ## 🌐 Vercel Deployment (Recommended)
 
+> Note: This repository is Vercel-ready. There's a `vercel.json` at the repo root that tells Vercel to build the Next app located in `haunted-debug-game/`. The project also includes `.nvmrc` files (root and `haunted-debug-game`) to pin Node 18 for both local and hosting environments. If you prefer, you can instead set the Project Root Directory in the Vercel dashboard to `haunted-debug-game`.
+
 ### Quick Deploy
 1. **Connect Repository**
    ```bash

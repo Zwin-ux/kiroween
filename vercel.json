@@ -1,0 +1,9 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "haunted-debug-game/package.json",
+      "use": "@vercel/next"
+    }
+  ]
+}

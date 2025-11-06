@@ -83,11 +83,13 @@ const DEFAULT_CONFIG: ValidationConfig = {
  */
 export class AssetValidator {
   private config: ValidationConfig;
-  private errors: ValidationError[] = [];
-  private warnings: ValidationWarning[] = [];
+  private errors: ValidationError[];
+  private warnings: ValidationWarning[];
 
   constructor(config: Partial<ValidationConfig> = {}) {
     this.config = { ...DEFAULT_CONFIG, ...config };
+    this.errors = [];
+    this.warnings = [];
   }
 
   /**

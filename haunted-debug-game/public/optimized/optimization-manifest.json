@@ -1,0 +1,27 @@
+{
+  "timestamp": "2025-11-06T06:06:06.587Z",
+  "buildId": "build-1762409166587",
+  "optimization": {
+    "processed": 11,
+    "optimized": 11,
+    "errors": 0,
+    "totalSizeBefore": 22749225,
+    "totalSizeAfter": 68247675,
+    "formats": {
+      "webp": 11,
+      "avif": 11
+    },
+    "compressionRatio": -200
+  },
+  "config": {
+    "publicDir": "./public",
+    "outputDir": "./public/optimized",
+    "formats": [
+      "webp",
+      "avif"
+    ],
+    "quality": 85,
+    "enableCompression": true,
+    "generateManifest": true
+  }
+}
