@@ -1,5 +1,5 @@
 # KiroWeen
-
+for a hackathon 
 **A haunted debugging game. Fix bugs to escape the house.**
 
 ![KiroWeen showcase](showcase/kiroween-showcase.gif)
