@@ -9,7 +9,7 @@
   "scripts": {
     "dev": "next dev --webpack",
     "dev:turbo": "next dev --turbopack",
-    "build": "CSS_TRANSFORMER_WASM=1 next build",
+    "build": "next build",
     "build:skip-validation": "npm run optimize:assets && next build",
     "build:fast": "next build",
     "start": "next start",
