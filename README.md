@@ -2,6 +2,8 @@
 
 **A haunted debugging game. Fix bugs to escape the house.**
 
+![KiroWeen showcase](showcase/kiroween-showcase.gif)
+
 KiroWeen is a short browser game where each room is a different type of software bug. Fix the bug, unlock the next room. The ghosts are your code smells.
 
 Built as a Halloween project. Probably still has bugs. That's the point.
